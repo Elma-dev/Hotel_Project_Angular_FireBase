@@ -1,0 +1,78 @@
+<h3 class="text-center">Reserve Room</h3>
+<div class="shadow-lg p-3 mb-5 bg-body rounded border border-success">
+<form [formGroup]="hotelForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-3">
+        <label >Client</label>
+        <select formControlName="idClient" class="form-control" >
+            
+            <option [value]="client.id" *ngFor="let client of client;let i=index" >{{client.NomClient}} {{'Prenom'}}</option>
+            
+        </select>
+    </div>
+    <div class="mb-3">
+        <label >Room</label>
+        <input type="number" formControlName="Room" class="form-control" placeholder="Room Number" required>
+    </div>
+    <div class="mb-3">
+        <label >Start</label>
+        <input type="date" formControlName="Start" class="form-control" placeholder="Start Date" required>
+    </div>
+    <div class="mb-3">
+        <label >End</label>
+        <input type="date" formControlName="End" class="form-control" placeholder="End Date" required>
+    </div>
+    <div class="mb-3">
+        <label >Number Nights</label>
+        <input type="number" formControlName="nmberNight" class="form-control" placeholder="Number Nights" required>
+    </div>
+    <div class="mb-3">
+        <label >Room Type</label>
+        <select formControlName="roomType" class="form-control">
+            <option value="single">single</option>
+            <option value="double">double</option>
+            <option value="family">family</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label >Smoking</label>
+        <input type="text" formControlName="Smoking" class="form-control" placeholder="yes/No" required>
+    </div>
+    <div class="d-grid">
+        <button type="submit" class="btn btn-success" [disabled]="!hotelForm.valid">Reserve</button>
+        
+    </div>
+</form>
+</div>
+<br/><br/><br/>
+<h3 class="text-center">Clietn Reservation</h3>
+<table class="table">
+    <thead class=" bg-primary text-white">
+      <tr>
+        <th scope="col">NomClient</th>
+        <th scope="col">Room</th>
+        <th scope="col">Start</th>
+        <th scope="col">End</th>
+        <th scope="col">nbrNight</th>
+        <th scope="col">RoomType</th>
+        <th scope="col">Smoking</th>
+        <th scope="col">Edit | Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of client;let i=index">
+          <td>{{client.NomClient}}</td>
+          <td>{{client.Room.Room}}</td>
+          <td>{{client.Room.Start}}</td>
+          <td>{{client.Room.End}}</td>
+          <td>{{client.Room.nmberNight}}</td>
+          <td>{{client.Room.roomType}}</td>
+          <td>{{client.Room.Smoking}}</td>
+          <td >
+            <span routerLink="" class="btn btn-primary btn-sm mx-1">Edit</span>
+            <span  class="btn btn-danger btn-sm">Delete</span>
+          </td>
+         
+        </tr>
+      </tbody>
+    
+  </table>

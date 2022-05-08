@@ -1,0 +1,28 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">NomClient</th>
+        <th scope="col">NBCompte</th>
+        <th scope="col">DateTransaction</th>
+        <th scope="col">TypeTransaction</th>
+        <th scope="col">NomAgence</th>
+        <th scope="col">Montant</th>
+        <th scope="col">Solde</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of client;let i=index">
+        <td>{{client.NomClient}}</td>
+        <td>{{client.NBCompte}}</td>
+        <td>{{client.DateTransaction}}</td>
+        <td>{{client.TypeTransaction}}</td>
+        <td>{{client.NomAgence}}</td>
+        <td>{{client.Montant}}</td>
+        <td>{{client.Solde}}</td>
+        <td>
+            <span (click)="removeClient(client)" class="btn btn-danger">Delete</span>&nbsp;
+            <span routerLink="/update-client/{{client.id}}" class="btn btn-primary">Edit</span>&nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
