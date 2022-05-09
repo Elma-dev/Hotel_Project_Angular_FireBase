@@ -31,7 +31,6 @@ export class ClientService {
   }
 
   deleteClient(client:Clients){
-    console.log(client.id+" remove2")
       return this.angularFireStore
       .collection("client-collection")
       .doc(client.id)

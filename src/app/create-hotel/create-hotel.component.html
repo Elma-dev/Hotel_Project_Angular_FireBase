@@ -1,5 +1,5 @@
-<h3 class="text-center">Reserve Room</h3>
-<div class="shadow-lg p-3 mb-5 bg-body rounded border border-success">
+<h3 *ngIf="!showModal" class="text-center">Reserve Room</h3>
+<div *ngIf="!showModal" class="shadow-lg p-3 mb-5 bg-body rounded border border-success">
 <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="mb-3">
         <label >Client</label>
@@ -43,6 +43,7 @@
     </div>
 </form>
 </div>
+
 <br/><br/><br/>
 <h3 class="text-center">Clietn Reservation</h3>
 <table class="table">
@@ -58,21 +59,73 @@
         <th scope="col">Edit | Delete</th>
       </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let client of client;let i=index">
-          <td>{{client.NomClient}}</td>
-          <td>{{client.Room.Room}}</td>
-          <td>{{client.Room.Start}}</td>
-          <td>{{client.Room.End}}</td>
-          <td>{{client.Room.nmberNight}}</td>
-          <td>{{client.Room.roomType}}</td>
-          <td>{{client.Room.Smoking}}</td>
-          <td >
-            <span routerLink="" class="btn btn-primary btn-sm mx-1">Edit</span>
-            <span  class="btn btn-danger btn-sm">Delete</span>
+    <tbody >
+        <tr *ngFor="let client of client;let i=index " >
+          <td *ngIf="client.Room!=null">{{client.NomClient}}</td>
+          <td >{{client.Room?.Room}}</td>
+          <td >{{client.Room?.Start}}</td>
+          <td >{{client.Room?.End}}</td>
+          <td >{{client.Room?.nmberNight}}</td>
+          <td >{{client.Room?.roomType}}</td>
+          <td >{{client.Room?.Smoking}}</td>
+          <td  *ngIf="client.Room!=null" >
+            <span   (click)="editModal(client)" class="btn btn-warning btn-sm mx-1">Edit</span>
+            <span   (click)="removeRoom(client)" class="btn btn-danger btn-sm">Delete</span>
           </td>
          
         </tr>
       </tbody>
     
-  </table>
+</table>
+
+
+  <h3 *ngIf="showModal" class="text-center">Edit Client Reserved Room</h3><br/>
+  <div *ngIf="showModal" class="shadow-lg p-3 mb-5 bg-body rounded border border-warning">
+    <form [formGroup]="editHotelForm" (ngSubmit)="onSubmitToEdit()" novalidate>
+        <div class="mb-3">
+            <label >Client</label>
+            <select formControlName="idClient" class="form-control" [(ngModel)]="editClient.id" >
+                
+                <option [value]="editClient.id" selected >{{editClient.NomClient}} {{'Prenom'}}</option>
+                
+            </select>
+        </div>
+        <div class="mb-3">
+            <label >Room</label>
+            <input type="number" formControlName="Room" class="form-control" placeholder="Room Number" [(ngModel)]="editClient.Room.Room" required>
+        </div>
+        <div class="mb-3">
+            <label >Start</label>
+            <input type="date" formControlName="Start" class="form-control" placeholder="Start Date" [(ngModel)]="editClient.Room.Start" required>
+        </div>
+        <div class="mb-3">
+            <label >End</label>
+            <input type="date" formControlName="End" class="form-control" placeholder="End Date" [(ngModel)]="editClient.Room.End"   required>
+        </div>
+        <div class="mb-3">
+            <label >Number Nights</label>
+            <input type="number" formControlName="nmberNight" class="form-control" placeholder="Number Nights"  [(ngModel)]="editClient.Room.nmberNight" required>
+        </div>
+        <div class="mb-3">
+            <label >Room Type</label>
+            <select formControlName="roomType" class="form-control" [(ngModel)]="editClient.Room.roomType">
+                <option value="single">single</option>
+                <option value="double">double</option>
+                <option value="family">family</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label >Smoking</label>
+            <input type="text" formControlName="Smoking" class="form-control" placeholder="yes/No" [(ngModel)]="editClient.Room.Smoking"  required>
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-warning" [disabled]="!editHotelForm.valid">Edit Reservation</button>
+        </div>
+        <br/>
+        <div class="d-grid">
+            <button (click)="showModal=false;" type="reset"  class="btn btn-secondary" >Cancel</button>
+        </div>
+    </form>
+</div>
+
+  

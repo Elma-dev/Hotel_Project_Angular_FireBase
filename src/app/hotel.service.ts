@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import cli from '@angular/cli';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { collection } from '@firebase/firestore';
+import { collection, deleteField } from '@firebase/firestore';
 import { Clients } from './clients.model';
 import { Hotel } from './hotel.model';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +24,21 @@ export class HotelService {
         Smoking:hotel.Smoking,
       }
     })
+  }
+  editRoom(client:Clients){
+    this.angularFireStore.collection("client-collection").doc(client.id).update({Room:deleteField()});
+  }
+  updateRoom(Room:Hotel,id:any){
+    return this.angularFireStore.collection("client-collection").doc(id).update({
+      Room:{
+        End:Room.End,
+        Room:Room.Room,
+        Smoking:Room.Smoking,
+        Start:Room.Start,
+        nmberNight:Room.nmberNight,
+        roomType:Room.roomType
+      }
+    })
+    
   }
 }

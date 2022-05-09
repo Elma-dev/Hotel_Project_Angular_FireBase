@@ -1,5 +1,6 @@
+<h3 class="text-center">List Client</h3><br/>
 <table class="table">
-    <thead>
+    <thead class="bg-success text-white">
       <tr>
         <th scope="col">NomClient</th>
         <th scope="col">NBCompte</th>
@@ -8,6 +9,7 @@
         <th scope="col">NomAgence</th>
         <th scope="col">Montant</th>
         <th scope="col">Solde</th>
+        <th>Delete | Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -20,8 +22,8 @@
         <td>{{client.Montant}}</td>
         <td>{{client.Solde}}</td>
         <td>
-            <span (click)="removeClient(client)" class="btn btn-danger">Delete</span>&nbsp;
-            <span routerLink="/update-client/{{client.id}}" class="btn btn-primary">Edit</span>&nbsp;
+            <span (click)="removeClient(client)" class="btn btn-danger btn-sm">Delete</span>&nbsp;
+            <span routerLink="/update-client/{{client.id}}" class="btn btn-primary btn-sm">Edit</span>&nbsp;
         </td>
       </tr>
     </tbody>
