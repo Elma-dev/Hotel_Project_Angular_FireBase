@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { AngularFireModule} from '@angular/fire/compat'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateHotelComponent } from './create-hotel/create-hotel.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 
@@ -23,7 +24,8 @@ import { CreateHotelComponent } from './create-hotel/create-hotel.component';
     CreatePhComponent,
     ListPhComponent,
     EditPhComponent,
-    CreateHotelComponent
+    CreateHotelComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
