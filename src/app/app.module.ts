@@ -14,6 +14,7 @@ import { AngularFireModule} from '@angular/fire/compat'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateHotelComponent } from './create-hotel/create-hotel.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 
 
@@ -25,7 +26,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     ListPhComponent,
     EditPhComponent,
     CreateHotelComponent,
-    HomePageComponent
+    HomePageComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,
