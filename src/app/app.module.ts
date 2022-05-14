@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateHotelComponent } from './create-hotel/create-hotel.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { CommonModule } from '@angular/common';
+
 
 
 
@@ -30,6 +32,7 @@ import { TicketComponent } from './ticket/ticket.component';
     TicketComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

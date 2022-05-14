@@ -20,12 +20,8 @@ export class EditPhComponent implements OnInit {
     {
       this.editForm=this.formBuilder.group({
         NomClient: [''],
-        NBCompte:[''],
-        DateTransaction:[''],
-        TypeTransaction:[''],
-        NomAgence:[''],
-        Montant:[''],
-        Solde:['']
+        Address:[''],
+        type:[''],
       })
 
    }
@@ -37,13 +33,11 @@ export class EditPhComponent implements OnInit {
     this.clientService.getClientDoc(id).subscribe(res=>{
       this.clientRef=res;
       this.editForm=this.formBuilder.group({
+        Room:[this.clientRef.Room],
         NomClient: [this.clientRef.NomClient],
-        NBCompte:[this.clientRef.NBCompte],
-        DateTransaction:[this.clientRef.DateTransaction],
-        TypeTransaction:[this.clientRef.TypeTransaction],
-        NomAgence:[this.clientRef.NomAgence],
-        Montant:[this.clientRef.Montant],
-        Solde:[this.clientRef.Solde]
+        Address:[this.clientRef.Address],
+        type:[this.clientRef.type],
+
       })
     })
   }

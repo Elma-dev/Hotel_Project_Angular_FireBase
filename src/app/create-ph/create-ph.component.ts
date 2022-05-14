@@ -13,12 +13,10 @@ export class CreatePhComponent implements OnInit {
   constructor(public clientService:ClientService,public formBuilder:FormBuilder,public router:Router) {
     this.clientForm=this.formBuilder.group({
       NomClient: [''],
-      NBCompte:[''],
-      DateTransaction:[''],
-      TypeTransaction:[''],
-      NomAgence:[''],
-      Montant:[''],
-      Solde:['']
+      Address:[''] ,
+      Solde:[''],
+      type:[''],
+      Room:['']
     })
    }
 
@@ -26,6 +24,7 @@ export class CreatePhComponent implements OnInit {
   }
 
   onSubmit(){
+    
     this.clientService.createClient(this.clientForm.value);
     this.router.navigate(['list-client']);
   }

@@ -5,7 +5,7 @@
         <label >Client</label>
         <select formControlName="idClient" class="form-control" >
             
-            <option [value]="client.id" *ngFor="let client of client;let i=index" >{{client.NomClient}} {{'Prenom'}}</option>
+            <option  [value]="client.id" *ngFor="let client of client;let i=index"  >{{client.NomClient}} {{'Prenom'}}</option>
             
         </select>
     </div>
@@ -60,15 +60,15 @@
       </tr>
     </thead>
     <tbody >
-        <tr *ngFor="let client of client;let i=index " >
-          <td *ngIf="client.Room!=null">{{client.NomClient}}</td>
+        <tr *ngFor="let client of client;let i=index;"  >
+          <td *ngIf="client.Room">{{client.NomClient}}</td>
           <td >{{client.Room?.Room}}</td>
           <td >{{client.Room?.Start}}</td>
           <td >{{client.Room?.End}}</td>
           <td >{{client.Room?.nmberNight}}</td>
           <td >{{client.Room?.roomType}}</td>
           <td >{{client.Room?.Smoking}}</td>
-          <td  *ngIf="client.Room!=null" >
+          <td  *ngIf="client.Room " >
             <span   (click)="editModal(client)" class="btn btn-warning btn-sm mx-1">Edit</span>
             <span   (click)="removeRoom(client)" class="btn btn-danger btn-sm">Delete</span>
           </td>

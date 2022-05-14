@@ -19,7 +19,8 @@ export class CreateHotelComponent implements OnInit {
   public editHotelForm:FormGroup;
   client:Clients[]
   showModal:boolean;
-  editClient:Clients
+  editClient:Clients;
+  type:string;
   constructor(public hotelService:HotelService,public formBuilder:FormBuilder,public router:Router,private clientService:ClientService) { 
     this.showModal=false;
     this.hotelForm=this.formBuilder.group({
@@ -29,7 +30,9 @@ export class CreateHotelComponent implements OnInit {
       End:[''],
       nmberNight:[''],
       roomType:[''],
-      Smoking:['']
+      Smoking:[''],
+      
+    
     })
     this.editHotelForm=this.formBuilder.group({
       idClient:[''],
@@ -54,13 +57,20 @@ export class CreateHotelComponent implements OnInit {
     })
   }
   onSubmit(){
-    console.log(this.hotelForm.value.idClient)
-    this.hotelService.addRoom(this.hotelForm.value,this.hotelForm.value.idClient);
+    for(let i=0;i<this.client.length;i++){
+      if(this.client[i].id===this.hotelForm.value.idClient){
+        this.type=this.client[i].type;
+        break;
+      }
+    }
+    console.log(this.hotelForm.value.idClient + this.type)
+    
+    this.hotelService.addRoom(this.hotelForm.value,this.hotelForm.value.idClient,this.type);
     this.router.navigate(['list-client']);
   }
   onSubmitToEdit(){
     console.log(this.editHotelForm.value.idClient)
-    this.hotelService.updateRoom(this.editHotelForm.value,this.editHotelForm.value.idClient);
+    this.hotelService.updateRoom(this.editHotelForm.value,this.editHotelForm.value.idClient,this.type);
     this.showModal=false;
   }
 
@@ -72,6 +82,7 @@ export class CreateHotelComponent implements OnInit {
   }
 
   editModal(client:Clients){
+    this.type=client.type;
     this.editClient=client;
     this.showModal=true;
   }

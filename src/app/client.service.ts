@@ -8,6 +8,7 @@ import { Clients } from './clients.model';
   providedIn: 'root'
 })
 export class ClientService {
+  
 
   constructor(private angularFireStore:AngularFirestore) { }
   getClientDoc(id:any){
@@ -37,13 +38,41 @@ export class ClientService {
       .delete();
   }
   updateClient(client:Clients,id:any){
+    
+    if(client.Room!=null){
+      if(client.type==="client")
+        switch (client.Room.roomType){
+          case "single":
+            client.Solde=client.Room.nmberNight*100;
+              break;
+          case "double":
+            client.Solde=client.Room.nmberNight*100*2;
+            break;
+          case "family":
+            client.Solde=client.Room.nmberNight*100*3;
+            break;  
+        }
+          
+      else 
+        switch (client.Room.roomType){
+          case "single":
+            client.Solde=client.Room.nmberNight*180;
+           break;
+          case "double":
+            client.Solde=client.Room.nmberNight*180*2;
+            break;
+          case "family":
+            client.Solde=client.Room.nmberNight*180*3;
+            break;  
+        }}
+
+        console.log(client)
+
+
     return this.angularFireStore.collection("client-collection").doc(id).update({
       NomClient: client.NomClient,
-      NBCompte:client.NBCompte,
-      DateTransaction:client.DateTransaction,
-      TypeTransaction:client.TypeTransaction,
-      NomAgence:client.NomAgence,
-      Montant:client.Montant,
+      Address:client.Address,
+      type:client.type,
       Solde:client.Solde
     })
   }

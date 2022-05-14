@@ -3,23 +3,17 @@
     <thead class="bg-success text-white">
       <tr>
         <th scope="col">NomClient</th>
-        <th scope="col">NBCompte</th>
-        <th scope="col">DateTransaction</th>
-        <th scope="col">TypeTransaction</th>
-        <th scope="col">NomAgence</th>
-        <th scope="col">Montant</th>
-        <th scope="col">Solde</th>
+        <th scope="col">Address</th>
+        <th scope="col">Type</th>
+        <th scope="col">Prix Totale</th>
         <th>Delete | Edit</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let client of client;let i=index">
         <td>{{client.NomClient}}</td>
-        <td>{{client.NBCompte}}</td>
-        <td>{{client.DateTransaction}}</td>
-        <td>{{client.TypeTransaction}}</td>
-        <td>{{client.NomAgence}}</td>
-        <td>{{client.Montant}}</td>
+        <td>{{client.Address}}</td>
+        <td>{{client.type}}</td>
         <td>{{client.Solde}}</td>
         <td>
             <span (click)="removeClient(client)" class="btn btn-danger btn-sm">Delete</span>&nbsp;
