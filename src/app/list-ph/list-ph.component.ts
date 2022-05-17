@@ -9,19 +9,24 @@ import { Clients } from '../clients.model';
 })
 export class ListPhComponent implements OnInit {
   client:Clients[]
-  constructor(private clientService:ClientService) { }
+  constructor(private clientService:ClientService) { 
+    
+  }
 
   ngOnInit() {
     this.clientService.getClientList().subscribe(res=>{
       this.client=res.map(e=>{
+        console.log(e.payload.doc)
         return{
           id:e.payload.doc.id,
           ...e.payload.doc.data() as{}
         }as Clients;
       })
     })
+    
   }
   removeClient(client:Clients){
+    console.log(this.client);
     if(confirm("Are you sure to delete "+client.NomClient)){
       this.clientService.deleteClient(client);
     }

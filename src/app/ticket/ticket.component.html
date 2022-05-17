@@ -2,12 +2,20 @@
 
 <div class="container">
     <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="mb-3">
-        <label >Client</label>
-        <select formControlName="idClient" class="form-control" >
-            <option [value]="client.id" *ngFor="let client of client;let i=index" >{{client.NomClient}} {{'Prenom'}}</option>
-        </select>
-    </div>
+        <div class="mb-3">
+            <label >Client</label>
+            <select  [(ngModel)]="ticketClient"  formControlName="References" class="form-control" required >
+                <option [value]="client.id" *ngFor="let client of client;let i=index" >{{client.NomClient}}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Reference</label>
+            <input type="text"  formControlName="References" class="form-control"  name="reference" [attr.disabled]="true" [(ngModel)]="ticketClient" >
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success" [disabled]="!ticketForm.valid">Reserve</button>
+        </div>
+
     </form>
 
 </div>
